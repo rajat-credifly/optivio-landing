@@ -1,7 +1,13 @@
 // src/App.tsx
-import React from "react";
+import React, { useState } from "react";
+import DemoModal from "./components/DemoModal";
 
 function App() {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const openModal = () => setIsModalOpen(true);
+  const closeModal = () => setIsModalOpen(false);
+
   return (
     <div className="bg-gray-50 text-gray-800">
       {/* Navbar */}
@@ -13,7 +19,10 @@ function App() {
           <a href="#integrations" className="hover:text-indigo-600">Integrations</a>
           <a href="#contact" className="hover:text-indigo-600">Contact</a>
         </div>
-        <button className="px-4 py-2 bg-indigo-600 text-white rounded-lg shadow hover:bg-indigo-700">
+        <button 
+          onClick={openModal}
+          className="px-4 py-2 bg-indigo-600 text-white rounded-lg shadow hover:bg-indigo-700"
+        >
           Get Started
         </button>
       </nav>
@@ -24,9 +33,12 @@ function App() {
           AI That Works Alongside Your Team
         </h1>
         <p className="text-lg md:text-xl mb-8 text-gray-600 max-w-2xl mx-auto">
-          Optivio joins your meetings, answers questions, and takes action—whether it’s updating Jira, Salesforce, or sending follow-ups.
+          Optivio joins your meetings, answers questions, and takes action—whether it's updating Jira, Salesforce, or sending follow-ups.
         </p>
-        <button className="px-8 py-3 bg-indigo-600 text-white rounded-lg shadow hover:bg-indigo-700 text-lg">
+        <button 
+          onClick={openModal}
+          className="px-8 py-3 bg-indigo-600 text-white rounded-lg shadow hover:bg-indigo-700 text-lg"
+        >
           Request a Demo
         </button>
       </section>
@@ -76,7 +88,10 @@ function App() {
           ))}
         </div>
         <div className="text-center mt-10">
-          <button className="px-6 py-3 bg-indigo-600 text-white rounded-lg shadow hover:bg-indigo-700">
+          <button 
+            onClick={openModal}
+            className="px-6 py-3 bg-indigo-600 text-white rounded-lg shadow hover:bg-indigo-700"
+          >
             Request an Integration
           </button>
         </div>
@@ -86,7 +101,10 @@ function App() {
       <section id="contact" className="py-20 px-6 bg-gray-50 text-center">
         <h2 className="text-3xl font-bold mb-6">Ready to Transform Meetings?</h2>
         <p className="text-gray-600 mb-8">Get in touch to schedule a demo and see Optivio in action.</p>
-        <button className="px-8 py-3 bg-indigo-600 text-white rounded-lg shadow hover:bg-indigo-700 text-lg">
+        <button 
+          onClick={openModal}
+          className="px-8 py-3 bg-indigo-600 text-white rounded-lg shadow hover:bg-indigo-700 text-lg"
+        >
           Book a Demo
         </button>
       </section>
@@ -95,6 +113,9 @@ function App() {
       <footer className="py-6 px-6 bg-white text-center text-gray-500 border-t">
         © {new Date().getFullYear()} Optivio. All rights reserved.
       </footer>
+
+      {/* Demo Modal */}
+      <DemoModal isOpen={isModalOpen} onClose={closeModal} />
     </div>
   );
 }

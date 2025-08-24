@@ -1,70 +1,109 @@
-# React + TypeScript + Vite
+# Optivio Landing Page
 
+A modern landing page for Optivio with demo request functionality.
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Features
 
-Currently, two official plugins are available:
+- Responsive landing page with Tailwind CSS
+- Demo request modal with email collection
+- Email notifications sent to rajat@credifly.co
+- Modern UI with smooth interactions
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Setup
 
-## Expanding the ESLint configuration
+### Prerequisites
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+- Node.js (v16 or higher)
+- npm or yarn
 
-```js
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+### Installation
 
-      // Remove tseslint.configs.recommended and replace with this
-      ...tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      ...tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      ...tseslint.configs.stylisticTypeChecked,
+1. Clone the repository
+2. Install dependencies:
+   ```bash
+   npm install
+   ```
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+3. Create a `.env` file in the root directory with your email configuration:
+   ```bash
+   cp env.example .env
+   ```
+   
+   Then edit `.env` with your Gmail credentials:
+   ```
+   EMAIL_USER=your-email@gmail.com
+   EMAIL_PASS=your-gmail-app-password
+   ```
+
+   **Note:** For Gmail, you'll need to use an App Password, not your regular password. [Learn how to create one here](https://support.google.com/accounts/answer/185833).
+
+### Running the Application
+
+#### Development Mode (Frontend + Backend)
+```bash
+npm run dev:full
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+This will start both the Vite dev server (frontend) and the Express server (backend) concurrently.
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+#### Frontend Only
+```bash
+npm run dev
 ```
+
+#### Backend Only
+```bash
+npm run server
+```
+
+### Building for Production
+
+```bash
+npm run build
+```
+
+## How It Works
+
+1. Users click any "Request a Demo" button on the landing page
+2. A modal opens asking for their email address
+3. Upon submission, the email is sent to rajat@credifly.co
+4. Users receive a confirmation message
+5. The modal automatically closes after 3 seconds
+
+## API Endpoints
+
+- `POST /api/submit-demo-request` - Submits a demo request with email
+
+## Technologies Used
+
+- React 18 with TypeScript
+- Vite for build tooling
+- Tailwind CSS for styling
+- Express.js for backend API
+- Nodemailer for email functionality
+- CORS for cross-origin requests
+
+## Environment Variables
+
+- `EMAIL_USER` - Gmail address for sending emails
+- `EMAIL_PASS` - Gmail app password
+- `PORT` - Server port (default: 3001)
+
+## Deployment
+
+The application is configured for GitHub Pages deployment:
+
+```bash
+npm run deploy
+```
+
+## Contributing
+
+1. Fork the repository
+2. Create a feature branch
+3. Make your changes
+4. Submit a pull request
+
+## License
+
+This project is private and proprietary to Optivio.
